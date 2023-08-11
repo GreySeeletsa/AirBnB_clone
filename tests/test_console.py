@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""A unit test module for the console (command interpreter).
+"""The unit test module for a console (command interpreter).
 """
 import json
 import MySQLdb
@@ -17,12 +17,12 @@ from tests import clear_stream
 
 
 class TestHBNBCommand(unittest.TestCase):
-    """Represents the test class for the HBNBCommand class.
+    """Representing a test class for HBNBCommand class.
     """
     @unittest.skipIf(
         os.getenv('HBNB_TYPE_STORAGE') == 'db', 'FileStorage test')
     def test_fs_create(self):
-        """Tests the create command with the file storage.
+        """Test a create command with a file storage.
         """
         with patch('sys.stdout', new=StringIO()) as cout:
             cons = HBNBCommand()
@@ -45,7 +45,7 @@ class TestHBNBCommand(unittest.TestCase):
     @unittest.skipIf(
         os.getenv('HBNB_TYPE_STORAGE') != 'db', 'DBStorage test')
     def test_db_create(self):
-        """Tests the create command with the database storage.
+        """Test a create command with a database storage.
         """
         with patch('sys.stdout', new=StringIO()) as cout:
             cons = HBNBCommand()
@@ -54,7 +54,7 @@ class TestHBNBCommand(unittest.TestCase):
                 cons.onecmd('create User')
             # creating a User instance
             clear_stream(cout)
-            cons.onecmd('create User email="john25@gmail.com" password="123"')
+            cons.onecmd('create User email="keneilwe963@gmail.com" password="123"')
             mdl_id = cout.getvalue().strip()
             dbc = MySQLdb.connect(
                 host=os.getenv('HBNB_MYSQL_HOST'),
@@ -67,7 +67,7 @@ class TestHBNBCommand(unittest.TestCase):
             cursor.execute('SELECT * FROM users WHERE id="{}"'.format(mdl_id))
             result = cursor.fetchone()
             self.assertTrue(result is not None)
-            self.assertIn('john25@gmail.com', result)
+            self.assertIn('keneilwe963@gmail.com', result)
             self.assertIn('123', result)
             cursor.close()
             dbc.close()
@@ -75,12 +75,12 @@ class TestHBNBCommand(unittest.TestCase):
     @unittest.skipIf(
         os.getenv('HBNB_TYPE_STORAGE') != 'db', 'DBStorage test')
     def test_db_show(self):
-        """Tests the show command with the database storage.
+        """Test a show command with a database storage.
         """
         with patch('sys.stdout', new=StringIO()) as cout:
             cons = HBNBCommand()
             # showing a User instance
-            obj = User(email="john25@gmail.com", password="123")
+            obj = User(email="keneilwe963@gmail.com", password="123")
             dbc = MySQLdb.connect(
                 host=os.getenv('HBNB_MYSQL_HOST'),
                 port=3306,
@@ -111,9 +111,9 @@ class TestHBNBCommand(unittest.TestCase):
             cons.onecmd('show User {}'.format(obj.id))
             result = cursor.fetchone()
             self.assertTrue(result is not None)
-            self.assertIn('john25@gmail.com', result)
+            self.assertIn('keneilwe963@gmail.com', result)
             self.assertIn('123', result)
-            self.assertIn('john25@gmail.com', cout.getvalue())
+            self.assertIn('keneilwe963@gmail.com', cout.getvalue())
             self.assertIn('123', cout.getvalue())
             cursor.close()
             dbc.close()
@@ -121,7 +121,7 @@ class TestHBNBCommand(unittest.TestCase):
     @unittest.skipIf(
         os.getenv('HBNB_TYPE_STORAGE') != 'db', 'DBStorage test')
     def test_db_count(self):
-        """Tests the count command with the database storage.
+        """Test a count command with a database storage.
         """
         with patch('sys.stdout', new=StringIO()) as cout:
             cons = HBNBCommand()
@@ -136,7 +136,7 @@ class TestHBNBCommand(unittest.TestCase):
             cursor.execute('SELECT COUNT(*) FROM states;')
             res = cursor.fetchone()
             prev_count = int(res[0])
-            cons.onecmd('create State name="Enugu"')
+            cons.onecmd('create State name="Pretoria"')
             clear_stream(cout)
             cons.onecmd('count State')
             cnt = cout.getvalue().strip()
