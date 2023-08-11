@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+"""Tests the suite for user class in the models.user"""
+import unittest
+from models.base_model import BaseModel
+
+from models.user import User
+
+
+class TestUser(unittest.TestCase):
+    """Tests the cases averse to the user class"""
+
+    def test_attrs_are_class_attrs(self):
+        u = User()
+        # Tests if it is the class attribute
+        self.assertTrue(hasattr(User, "first_name")
+                        and hasattr(User, "last_name"))
+
+    def test_class_attrs(self):
+        u = User()
+        self.assertIs(type(u.first_name), str)
+        self.assertIs(type(u.last_name), str)
+        self.assertTrue(u.first_name == "")
+        self.assertTrue(u.last_name == "")
+
+    def test_user_is_a_subclass_of_basemodel(self):
+        u = User()
+        self.assertTrue(issubclass(type(u), BaseModel))
