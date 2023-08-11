@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Instantiate amenity class"""
-from module.base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):

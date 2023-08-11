@@ -1,11 +1,15 @@
 #!bin/usr/python3
-
+"""Has common methods for other classes"""
+import models
 from uuid import uuid4
 from datetime import datetime
 
-class BaseModel:
-    def __init__(self, *args, **kwargs):
 
+class BaseModel:
+    """Instantiates the BaseModel file"""
+
+    def __init__(self, *args, **kwargs):
+        """Method in BaseModel"""
         forma_t = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str((uuid4))
         self.created_at = datetime.today()
@@ -19,25 +23,20 @@ class BaseModel:
                 else:
                     models.storage.new(self)
 
-# will update updated_at with the current datetime
-def save(self):
+    def save(self):
+        """Will update attribute(update_at) with current datetime"""
+        self.updated_at = datetime.today()
+        models.storage.save()
 
+    def to_dict(self):
+        """Returns dictionary containing the values"""
+        d_ict = self.__dict__.copy()
+        d_ict["created_at"] = self.created_at.isoformat()
+        d_ict["updated_at"] = self.updated_at.isoformat()
+        d_ict["__class__"] = self.__class__.__name__
+        return d_ict
 
-    self.updated_at = datetime.today()
-    models.storage.save()
-
-# returns a dictionary containing all keys/values of __dict__ of the instance
-def to_dict(self):
-
-    
-    d_ict = self.__dict__.copy()
-    d_ict["created_at"] = self.created_at.isoformat()
-    d_ict["updated_at"] = self.updated_at.isoformat()
-    d_ict["__class__"] = self.__class__.__name__
-    return rdict
-
-def __str__(self):
-
-
-    class_name = self.__class__.__name__
-    return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
+    def __str__(self):
+        """Will return the string form"""
+        class_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
