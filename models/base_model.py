@@ -38,8 +38,8 @@ class BaseModel():
 
     def to_dict(self):
         """dictionary representation of BaseModel"""
-        new_dict = dict(self.__dict__)
-        new_dict['created_at'] = self.__dict__['created_at'].isoformat()
-        new_dict['updated_at'] = self.__dict__['updated_at'].isoformat()
-        new_dict['__class__'] = self.__class__.__name__
-        return (new_dict)
+        n_dict = dict(self.__dict__)
+        n_dict['created_at'] = self.__dict__['created_at'].isoformat()
+        n_dict['updated_at'] = self.__dict__['updated_at'].isoformat()
+        n_dict['__class__'] = self.__class__.__name__
+        return (n_dict)
