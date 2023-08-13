@@ -27,11 +27,11 @@ class TestFileStorageInit(unittest.TestCase):
         self.assertFalse(hasattr(FileStorage(), "__objects"))
 
     def test_init_without_arg(self):
-        """Test the initialization without the args"""
+        """Test the initialization without the arguments"""
         self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_init_with_arg(self):
-        """Test the initialization with the args"""
+        """Test the initialization with the arguments"""
         with self.assertRaises(TypeError):
             FileStorage(None)
 
@@ -54,13 +54,13 @@ class TestStorageMethods(unittest.TestCase):
     @classmethod
     def tearDown(self):
         """The code to execute after the tests is being executed"""
-        # Remove the file.json if it does exists
+        # Remove file.json if it does exist
         try:
             os.remove("file.json")
         except IOError:
             pass
 
-        # Rename the tmp.json from the setUp() to file.json
+        # Rename tmp.json from the setUp() to file.json
         try:
             os.rename("tmp.json", "file.json")
         except IOError:

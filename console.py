@@ -44,11 +44,11 @@ def parse(arg):
 
 
 def check_args(args):
-    """checking if the args is valid
+    """checking if the argument is valid
     Args:
         args (str): string containing arguments passed to the command
     Returns:
-        Error message if the args is none or not the valid class, else arguments
+        Error message if the argument is none or not the valid class, else arguments
     """
     arg_list = parse(args)
 
@@ -105,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, argv):
-        """This create the new instance of the BaseModel, save it the (to a JSON file)
+        """This create the new instance of the BaseModel, save it (to a JSON file)
         and then print the id"""
         args = check_args(argv)
         if args:

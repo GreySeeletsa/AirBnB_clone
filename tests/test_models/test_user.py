@@ -11,7 +11,7 @@ class TestUser(unittest.TestCase):
 
     def test_attrs_are_class_attrs(self):
         u = User()
-        # Tests if it is the class attribute
+        # Testing the class attribute
         self.assertTrue(hasattr(User, "first_name")
                         and hasattr(User, "last_name"))
 
